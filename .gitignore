@@ -6,3 +6,23 @@ debug
 foo.*
 *.log
 data
+
+#Recommended
+# Package Manager folders
+/lazy-lock.json # OPTIONAL: Keep this if you want reproducible builds
+/doc/tags
+
+# Local State
+.netrwhist
+*.swp
+*.swo
+undo/
+/shada/
+
+# Folders created by LSPs or formatters
+.venv/
+node_modules/
+.ipynb_checkpoints/
+
+# System files
+.DS_Store
