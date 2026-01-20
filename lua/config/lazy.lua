@@ -1,7 +1,3 @@
--- Disable built-in netrw explorer, instead using Neotree
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -24,6 +20,11 @@ require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+    { import = "lazyvim.plugins.extras.lang.typescript" },
+    { import = "lazyvim.plugins.extras.lang.python" },
+    { import = "lazyvim.plugins.extras.lang.clangd" },
+    { import = "lazyvim.plugins.extras.coding.autopairs" },
+    { import = "lazyvim.plugins.extras.coding.luasnip" },
     { import = "extras.lazyrc" },
     -- import/override with your plugins
     { import = "plugins" },
@@ -49,7 +50,7 @@ require("lazy").setup({
         "gzip",
         -- "matchit",
         -- "matchparen",
-        -- "netrwPlugin",
+        "netrwPlugin",
         "tarPlugin",
         "tohtml",
         "tutor",
