@@ -16,6 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.g.lazyvim_check_order = false
 
+
 require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
@@ -23,11 +24,19 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lang.python" },
     { import = "lazyvim.plugins.extras.lang.clangd" },
-    { import = "lazyvim.plugins.extras.coding.autopairs" },
+    { "nvim-mini/mini.pairs", opts = {} },
     { import = "lazyvim.plugins.extras.coding.luasnip" },
     { import = "extras.lazyrc" },
     -- import/override with your plugins
     { import = "plugins" },
+    {
+      "folke/snacks.nvim",
+      opts = {
+        explorer = {
+          enabled = false,
+        },
+      },
+    },
   },
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
