@@ -91,7 +91,7 @@ return {
 
 local unity_profile = [[
 return {
-  { import = "lazyvim.plugins.extras.lang.omnisharp" },
+  { import = "lazyvim.plugins.extras.lang.dotnet" },
   {
     "neovim/nvim-lspconfig",
     opts = {
@@ -114,9 +114,7 @@ return {
   },
   {
     "nvim-lua/plenary.nvim",
-    name = "unity-filetypes",
-    lazy = false,
-    config = function()
+    init = function()
       vim.filetype.add({
         extension = {
           asmdef = "json",
@@ -217,3 +215,8 @@ vim.keymap.set("n", "<leader>pc", setup_cpp_project, { desc = "Initialize C++ .l
 vim.keymap.set("n", "<leader>pr", setup_rust_project, { desc = "Initialize Rust .lazy.lua" })
 vim.keymap.set("n", "<leader>pg", setup_go_project, { desc = "Initialize Go .lazy.lua" })
 vim.keymap.set("n", "<leader>pl", setup_low_level_project, { desc = "Initialize Low-Level .lazy.lua" })
+
+vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Explorer NeoTree" })
+vim.keymap.set("n", "<leader>fe", "<cmd>Neotree toggle<cr>", { desc = "Explorer NeoTree" })
+vim.keymap.set("n", "<leader>fE", "<cmd>Neotree toggle<cr>", { desc = "Explorer NeoTree" })
+vim.keymap.set("n", "<leader>E", "<cmd>Neotree toggle<cr>", { desc = "Explorer NeoTree" })

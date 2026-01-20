@@ -4,7 +4,7 @@ return {
   -- VERY IMPORTANT: Disable lazy loading so it can hijack netrw on startup
   lazy = false,
   keys = {
-    { "<leader>e", "<leader>fe", desc = "Explorer NeoTree", remap = true },
+    { "<leader>e", "<cmd>Neotree toggle<cr>", desc = "Explorer NeoTree" },
   },
   opts = {
     filesystem = {
