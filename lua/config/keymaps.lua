@@ -18,6 +18,8 @@ local root_markers = {
   "CMakeLists.txt",
   "compile_commands.json",
   "Makefile",
+  "Cargo.toml",
+  "go.mod",
 }
 
 local function start_path()
@@ -90,12 +92,63 @@ return {
 local unity_profile = [[
 return {
   { import = "lazyvim.plugins.extras.lang.omnisharp" },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        omnisharp = {
+          enable_editorconfig_support = true,
+          enable_import_completion = true,
+          enable_roslyn_analyzers = true,
+          organize_imports_on_format = true,
+        },
+      },
+    },
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      opts.ensure_installed = opts.ensure_installed or {}
+      vim.list_extend(opts.ensure_installed, { "c_sharp", "json", "yaml", "xml" })
+    end,
+  },
+  {
+    "nvim-lua/plenary.nvim",
+    name = "unity-filetypes",
+    lazy = false,
+    config = function()
+      vim.filetype.add({
+        extension = {
+          asmdef = "json",
+          asmref = "json",
+          unity = "yaml",
+          prefab = "yaml",
+          asset = "yaml",
+          meta = "yaml",
+          shader = "hlsl",
+          cginc = "hlsl",
+        },
+      })
+    end,
+  },
 }
 ]]
 
 local cpp_profile = [[
 return {
   { import = "lazyvim.plugins.extras.lang.clangd" },
+}
+]]
+
+local rust_profile = [[
+return {
+  { import = "lazyvim.plugins.extras.lang.rust" },
+}
+]]
+
+local go_profile = [[
+return {
+  { import = "lazyvim.plugins.extras.lang.go" },
 }
 ]]
 
@@ -140,6 +193,14 @@ local function setup_cpp_project()
   write_profile("C++", cpp_profile)
 end
 
+local function setup_rust_project()
+  write_profile("Rust", rust_profile)
+end
+
+local function setup_go_project()
+  write_profile("Go", go_profile)
+end
+
 local function setup_low_level_project()
   write_profile("Low-Level", low_level_profile)
 end
@@ -147,8 +208,12 @@ end
 vim.api.nvim_create_user_command("SetupWeb", setup_web_project, {})
 vim.api.nvim_create_user_command("SetupUnity", setup_unity_project, {})
 vim.api.nvim_create_user_command("SetupCpp", setup_cpp_project, {})
+vim.api.nvim_create_user_command("SetupRust", setup_rust_project, {})
+vim.api.nvim_create_user_command("SetupGo", setup_go_project, {})
 vim.api.nvim_create_user_command("SetupLowLevel", setup_low_level_project, {})
 vim.keymap.set("n", "<leader>pw", setup_web_project, { desc = "Initialize Web Dev .lazy.lua" })
 vim.keymap.set("n", "<leader>pu", setup_unity_project, { desc = "Initialize Unity .lazy.lua" })
 vim.keymap.set("n", "<leader>pc", setup_cpp_project, { desc = "Initialize C++ .lazy.lua" })
+vim.keymap.set("n", "<leader>pr", setup_rust_project, { desc = "Initialize Rust .lazy.lua" })
+vim.keymap.set("n", "<leader>pg", setup_go_project, { desc = "Initialize Go .lazy.lua" })
 vim.keymap.set("n", "<leader>pl", setup_low_level_project, { desc = "Initialize Low-Level .lazy.lua" })
