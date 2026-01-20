@@ -3,7 +3,7 @@
 Personal setup. Will update it. Based on LazyVim Starter setup.
 
 # Personal Neovim Config
-Personal setup based on LazyVim Starter. It focuses on fast editing, project-specific profiles, and a simple workflow for switching language/tooling sets.
+Personal setup based on LazyVim Starter. For simple workflow. Will likely update the low level profile.
 
 ## Plugins
 
