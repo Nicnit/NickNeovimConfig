@@ -14,7 +14,7 @@ Easily change the theme using :Themery
 
 ## Lazyrc
 > [!WARNING]
-> Warnings about incorrectly warning plugins were disabled.
+> Warnings about incorrectly loading plugins were disabled.
 
 You can create project profiles via commands in `lua/config/keymaps.lua`. This is my replacement of VSCode profiles. Try :SetupWeb, :SetupUnity, :SetupCpp, :SetupRust, :SetupGo, or :SetupLowLevel.
 
