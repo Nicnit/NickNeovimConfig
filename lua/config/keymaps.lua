@@ -179,6 +179,26 @@ return {
 }
 ]]
 
+local asm_profile = [[
+return {
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      opts.ensure_installed = opts.ensure_installed or {}
+      vim.list_extend(opts.ensure_installed, { "asm" })
+    end,
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        asm_lsp = {}, -- Requires 'asm-lsp' from Mason
+      },
+    },
+  },
+}
+]]
+
 local function setup_web_project()
   write_profile("Web", web_profile)
 end
@@ -199,8 +219,13 @@ local function setup_go_project()
   write_profile("Go", go_profile)
 end
 
+-- For c largely
 local function setup_low_level_project()
   write_profile("Low-Level", low_level_profile)
+end
+
+local function setup_asm_project()
+  write_profile("Assembly", asm_profile)
 end
 
 vim.api.nvim_create_user_command("SetupWeb", setup_web_project, {})
@@ -209,7 +234,9 @@ vim.api.nvim_create_user_command("SetupCpp", setup_cpp_project, {})
 vim.api.nvim_create_user_command("SetupRust", setup_rust_project, {})
 vim.api.nvim_create_user_command("SetupGo", setup_go_project, {})
 vim.api.nvim_create_user_command("SetupLowLevel", setup_low_level_project, {})
+vim.api.nvim_create_user_command("SetupAssembly", setup_asm_project, {})
 vim.keymap.set("n", "<leader>pw", setup_web_project, { desc = "Initialize Web Dev .lazy.lua" })
+vim.keymap.set("n", "<leader>pa", setup_asm_project, { desc = "Initialize Assembly .lazy.lua" })
 vim.keymap.set("n", "<leader>pu", setup_unity_project, { desc = "Initialize Unity .lazy.lua" })
 vim.keymap.set("n", "<leader>pc", setup_cpp_project, { desc = "Initialize C++ .lazy.lua" })
 vim.keymap.set("n", "<leader>pr", setup_rust_project, { desc = "Initialize Rust .lazy.lua" })
