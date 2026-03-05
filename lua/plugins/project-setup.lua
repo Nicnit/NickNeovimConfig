@@ -160,20 +160,45 @@ return {
 
 profiles.Obsidian = [[
 return {
-  -- Core Language Support
+  -- 1. Core Languages
   { import = "lazyvim.plugins.extras.lang.typescript" },
   { import = "lazyvim.plugins.extras.lang.json" },
-  
-  -- Essential for writing docs and testing your plugin's target files
   { import = "lazyvim.plugins.extras.lang.markdown" },
-  
-  -- Optional: Ensure Prettier is configured for plugin files
+
+  -- 2. LSP Configuration (The "Brain")
   {
-    "mason-org/mason.nvim",
-    opts = function(_, opts)
-      opts.ensure_installed = opts.ensure_installed or {}
-      table.insert(opts.ensure_installed, "prettier")
-    end,
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        -- Configure the TypeScript server (vtsls) to be smarter
+        vtsls = {
+          -- This ensures it uses the Obsidian types from your node_modules
+          -- rather than the generic VSCode ones.
+          autoUseWorkspaceTsdk = true,
+          settings = {
+            typescript = {
+              suggest = {
+                completeFunctionCalls = true,
+                includeCompletionsForModuleExports = true,
+              },
+            },
+          },
+        },
+        -- Keep the schema fix for manifest.json
+        jsonls = {
+          settings = {
+            json = {
+              schemas = {
+                {
+                  fileMatch = { "manifest.json" },
+                  url = "http://json-schema.org/draft-07/schema#",
+                },
+              },
+            },
+          },
+        },
+      },
+    },
   },
 }
 ]]
