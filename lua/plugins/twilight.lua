@@ -2,7 +2,7 @@ return {
   "folke/twilight.nvim",
   opts = {
     dimming = {
-      alpha = 0.27, -- Default is 0.25. 0.40 is softer and easier on the eyes for prose.
+      alpha = 0.35, -- Default is 0.25. 0.40 is softer and easier on the eyes for prose.
       color = { "Normal", "#ffffff" },
       term_bg = "#000000",
       inactive = true, -- Fully dims other Neovim splits/windows to maximize focus.
