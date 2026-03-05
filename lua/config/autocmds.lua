@@ -9,8 +9,13 @@
 
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
-    if vim.fn.argc() == 1 and vim.fn.isdirectory(vim.fn.argv(0)) == 1 then
-      require("neo-tree.command").execute({ dir = vim.fn.argv(0), reveal = true })
+    local arg = vim.fn.argv(0)
+    local arg_count = vim.fn.argc()
+    if arg_count == 1 and vim.fn.isdirectory(arg) == 1 then
+      require("neo-tree.command").execute({ dir = arg, reveal = true })
+    elseif arg_count == 0 or (arg_count == 1 and vim.fn.isdirectory(arg) == 0) then
+      vim.cmd("Twilight") -- Twilight auto enable
     end
   end,
+  desc = "Open neo-tree for directory or enable Twilight for files",
 })

@@ -16,5 +16,13 @@ return {
   },
   -- We also need to make sure the plugins for those themes are installed
   { "ellisonleao/gruvbox.nvim" },
-  { "sainnhe/everforest" },
+  {
+    "sainnhe/everforest",
+    opts = {
+      background = "hard",
+      transparent_background_level = 1,
+      italics = true,
+      ui_contrast = "low",
+    },
+  },
 }
