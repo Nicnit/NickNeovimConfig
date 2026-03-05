@@ -1,0 +1,15 @@
+-- return {
+--   "neanias/everforest-nvim",
+--   version = false,
+--   lazy = false,
+--   priority = 1000,
+--   config = function()
+--     require("everforest").setup({
+--       background = "hard", -- Deeper contrast
+--       transparent_background_level = 1, -- Enables terminal transparency if you have a landscape wallpaper
+--       italics = true,
+--       ui_contrast = "low", -- Softer UI borders for prose
+--     })
+--     vim.cmd([[colorscheme everforest]])
+--   end,
+-- }
