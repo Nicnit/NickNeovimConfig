@@ -125,36 +125,7 @@ return { { import = "lazyvim.plugins.extras.lang.go" } }
 profiles.LowLevel = [[
 return {
   { import = "lazyvim.plugins.extras.lang.clangd" },
-  {
-    "mfussenegger/nvim-dap",
-    optional = true,
-    opts = function(_, opts)
-      local dap = require("dap")
-      
-      dap.adapters.gdb = {
-        type = "executable",
-        command = "gdb",
-        args = { "--interpreter=dap" },
-      }
-      
-      local gdb_config = {
-        name = "Launch (GDB)",
-        type = "gdb",
-        request = "launch",
-        program = function()
-          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-        end,
-        cwd = "${workspaceFolder}",
-        stopAtBeginningOfMainSubprogram = false,
-      }
-
-      dap.configurations.c = dap.configurations.c or {}
-      table.insert(dap.configurations.c, gdb_config)
-      
-      dap.configurations.cpp = dap.configurations.cpp or {}
-      table.insert(dap.configurations.cpp, gdb_config)
-    end,
-  },
+  { import = "lazyvim.plugins.extras.dap.core" },
 }
 ]]
 

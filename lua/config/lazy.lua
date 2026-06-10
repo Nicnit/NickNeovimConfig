@@ -23,6 +23,7 @@ require("lazy").setup({
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lang.python" },
+    { import = "lazyvim.plugins.extras.dap.core" },
     { import = "lazyvim.plugins.extras.lang.clangd" },
     { "nvim-mini/mini.pairs", opts = {} },
     { import = "lazyvim.plugins.extras.coding.luasnip" },

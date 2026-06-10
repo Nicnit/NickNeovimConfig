@@ -57,6 +57,7 @@ return {
     event = "InsertEnter",
     opts = {
       auto_enable = true,
+      combo = { enabled = false },
       colors = {
         color_1 = { "#7CFF01", "#110000", 118, 52 }, -- Stamina Green
         color_2 = { "#00B0FF", "#110000", 39, 52 }, -- Champion Blue
