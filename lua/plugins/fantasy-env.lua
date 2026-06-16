@@ -4,8 +4,11 @@
 
 return {
   -- Environment: Falling Autumn Leaves
+  -- DOESN'T WORK WITH TRANSPARENT BACKGROUND
+  --  must be disabled for it. draws an opaque backgorund/wallpaper
   {
     "folke/drop.nvim",
+    enabled = false,
     event = "VimEnter",
     config = function()
       require("drop").setup({
