@@ -56,7 +56,7 @@ return {
     "axsaucedo/neovim-power-mode",
     event = "InsertEnter",
     opts = {
-      auto_enable = true,
+      auto_enable = false,
       combo = { enabled = false },
       colors = {
         color_1 = { "#7CFF01", "#110000", 118, 52 }, -- Stamina Green
