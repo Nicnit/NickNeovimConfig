@@ -16,7 +16,6 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.g.lazyvim_check_order = false
 
-
 require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
