@@ -7,6 +7,10 @@ return {
     { "<leader>e", "<cmd>Neotree toggle<cr>", desc = "Explorer NeoTree" },
   },
   opts = {
+    window = {
+      position = "left",
+      width = 30,
+    },
     filesystem = {
       -- This is the specific setting that replaces netrw
       hijack_netrw_behavior = "open_default",
